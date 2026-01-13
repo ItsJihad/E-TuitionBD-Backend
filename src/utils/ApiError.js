@@ -16,3 +16,6 @@ class ApiError extends Error {
   }
 }
 export {ApiError}
+
+
+// here we just structured how our API ERRORS gonna show up in the frontend
