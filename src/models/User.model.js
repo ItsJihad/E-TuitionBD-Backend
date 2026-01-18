@@ -36,7 +36,7 @@ const UserSchema = new Schema(
       enum: ["student", "teacher"],
     },
 
-    Phone: {
+    phone: {
       type: Number,
       required: true,
     },
@@ -49,6 +49,10 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
+
+    refreshToken:{
+      type:String
+    }
   },
   { timestamps: true }
 );
@@ -58,15 +62,12 @@ UserSchema.plugin(mongooseAggregatePaginate);
 // lets see later how it works.
 
 // need to hash the password while saving (use of bcrypt)
-UserSchema.pre("save", async function (next) {
+UserSchema.pre("save", async function () {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 10);
-    return next();
-  } else {
-    return next();
   }
-  // this pre hook has been used to hash the password while saving it. and mainly userSchema is calling pre hook from mongoose and then calling a mathod from the middlewares {DOCS} "save", and then a function where it checks the field is modified or not.and if modified then a logic and if not then another logic plays. and as password hashing takes time we need to async await.
 });
+
 
 // compare or validate the password while signin using bcrypt
 
