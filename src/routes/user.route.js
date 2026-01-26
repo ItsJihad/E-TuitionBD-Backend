@@ -12,6 +12,6 @@ router.route("/register").post(
   ]),
   RegisterUser
 );
-router.route("/login").post(LoginUser);
+router.route("/login").post(upload.none(),LoginUser);
 
 export default router;

@@ -114,4 +114,4 @@ UserSchema.methods.ValidatePass= async function(password){
 
 
 
-export const User = mongoose.model("User", UserSchema);
+export  const User = mongoose.model("User", UserSchema);

@@ -23,6 +23,7 @@ dotenv.config({
 
                 // here we are calling the cloudinary uploader.upload function and passing filepath and file type into it and storing the response into a variable and returning the variable.url
             })
+            fs.unlinkSync(localFilePath)
             return response.url
         } catch (error) {
             console.log("Cloudinary upload error:", error);

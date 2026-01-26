@@ -30,7 +30,7 @@ const RegisterUser = asyncHandler(async (req, res) => {
   if (!isStrongPassword(password)) {
     throw new ApiError(
       400,
-      "Password must be at least 8 characters and include uppercase, lowercase, number, and special character."
+      "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.",
     );
   }
 
@@ -55,7 +55,6 @@ const RegisterUser = asyncHandler(async (req, res) => {
   }
 
   const avatarOncloudinaty = await uploaderOnCloudinary(avatarLocalpath);
-  
 
   const coverOncloudinaty = await uploaderOnCloudinary(coverLocalpath);
 
@@ -75,7 +74,7 @@ const RegisterUser = asyncHandler(async (req, res) => {
   });
 
   const userFromDB = await User.findById(userReff._id).select(
-    " -password -refreshToken"
+    " -password -refreshToken",
   );
 
   if (!userFromDB) {
