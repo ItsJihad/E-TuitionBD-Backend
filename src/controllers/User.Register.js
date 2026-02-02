@@ -39,38 +39,39 @@ const RegisterUser = asyncHandler(async (req, res) => {
   }
 
   const existedUser = await User.findOne({
-    $or: [{ email }, { username }],
+    $or: [{ email }],
   });
 
   if (existedUser) {
     throw new ApiError(409, "user already exists");
   }
 
-  const avatarLocalpath = req.files?.avatar?.[0]?.path;
+  // const avatarLocalpath = req.files?.avatar?.[0]?.path;
 
-  const coverLocalpath = req.files?.coverImage?.[0]?.path || "";
+  // const coverLocalpath = req.files?.coverImage?.[0]?.path || "";
 
-  if (!avatarLocalpath) {
-    throw new ApiError(409, "upload Avatar");
-  }
+  // if (!avatarLocalpath) {
+  //   throw new ApiError(409, "upload Avatar");
+  // }
 
-  const avatarOncloudinaty = await uploaderOnCloudinary(avatarLocalpath);
+  // const avatarOncloudinaty = await uploaderOnCloudinary(avatarLocalpath);
 
-  const coverOncloudinaty = await uploaderOnCloudinary(coverLocalpath);
+  // const coverOncloudinaty = await uploaderOnCloudinary(coverLocalpath);
 
-  if (!avatarOncloudinaty) {
-    throw new ApiError(409, "upload Avatar Image");
-  }
+  // if (!avatarOncloudinaty) {
+  //   throw new ApiError(409, "upload Avatar Image");
+  // }
 
   const userReff = await User.create({
     email: email.toLowerCase(),
-    password,
-    name,
+    password:password,
+    name:name,
     username: username.toLowerCase(),
-    role,
+    role:role,
     phone: parseInt(phone),
-    avatar: avatarOncloudinaty,
-    coverImage: coverOncloudinaty,
+    // avatar: avatarOncloudinaty,
+    // coverImage: coverOncloudinaty,
+   
   });
 
   const userFromDB = await User.findById(userReff._id).select(

@@ -12,16 +12,24 @@ const ApplySchema= new Schema({
 
     posts:{
         type:mongoose.Types.ObjectId,
-        ref:"post",
+        ref:"Post",
         required:true
     },
 
 
-    message: {
+    qualification: {
       type: String,
       required: true,
     },
-
+    experience:{
+      type:String,
+      required:true
+    },
+    expectedSalary:{
+      type:Number,
+      required:true
+    }
+    ,
     status: {
       type: String,
       enum: ["pending", "accepted", "rejected"],
@@ -33,6 +41,6 @@ const ApplySchema= new Schema({
 
 },{timestamps:true})
 
-UserSchema.plugin(mongooseAggregatePaginate)
+ApplySchema.plugin(mongooseAggregatePaginate)
 
 export const application = mongoose.model("application",ApplySchema)

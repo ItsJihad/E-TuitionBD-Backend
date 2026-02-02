@@ -10,8 +10,8 @@ router.route("/register").post(
     { name: "avatar", maxCount: 1 },
     { name: "coverImage", maxCount: 1 },
   ]),
-  RegisterUser
+  RegisterUser,
 );
-router.route("/login").post(upload.none(),LoginUser);
+router.route("/login").post(upload.none(), LoginUser);
 
 export default router;

@@ -33,7 +33,7 @@ const UserSchema = new Schema(
     role: {
       type: String,
       required: true,
-      enum: ["student", "teacher"],
+      enum: ["student", "teacher","admin"],
     },
 
     phone: {
@@ -41,18 +41,18 @@ const UserSchema = new Schema(
       required: true,
     },
 
-    avatar: {
-      type: String,
-      required: true,
-    },
-    coverImage: {
-      type: String,
-      required: false,
-    },
+    // avatar: {
+    //   type: String,
+    //   required: true,
+    // },
+    // coverImage: {
+    //   type: String,
+    //   required: false,
+    // },
 
     refreshToken:{
       type:String
-    }
+    },
   },
   { timestamps: true }
 );
@@ -87,7 +87,8 @@ UserSchema.methods.ValidatePass= async function(password){
     {
       _id:this._id,
       email:this.email,
-      username:this.username
+      username:this.username,
+      role:this.role
       //this is the payload , or we can say which data we are holding in the token
     },
     process.env.ACCESS_TOKEN_SECRET, // token secret
@@ -112,6 +113,6 @@ UserSchema.methods.ValidatePass= async function(password){
   )
  }
 
-
+ UserSchema.plugin(mongooseAggregatePaginate)
 
 export  const User = mongoose.model("User", UserSchema);

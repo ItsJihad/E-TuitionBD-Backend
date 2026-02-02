@@ -4,11 +4,6 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { User } from "../models/User.model.js";
 
 const LoginUser = asyncHandler(async (req, res) => {
-  // ill take email and password
-  //validate if any input is empty
-  //validate if the details are ok
-  //provide an accessToken & refreshToken
-
   const { email, password } = req.body;
 
   if ([email, password].some((field) => field?.trim() === "")) {
@@ -34,6 +29,10 @@ const LoginUser = asyncHandler(async (req, res) => {
     const ResponseData = await User.findById(LoggedUser._id).select(
       "-password -refreshToken -_id -createdAt -updatedAt",
     );
+
+
+
+
 
     const options = {
       httpOnly: true,

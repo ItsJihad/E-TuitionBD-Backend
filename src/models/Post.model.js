@@ -27,17 +27,21 @@ const postSchema= new Schema({
       type: String,
       required: true,
     },
+    location:{
+      type:String,
+      required:true
+    },
 
     status: {
       type: String,
-      enum: ["open", "closed"],
-      default: "open",
+      enum: ["pending", "approved"],
+      default: "pending",
     },
 
 
 
 },{timestamps:true})
 
-UserSchema.plugin(mongooseAggregatePaginate)
+postSchema.plugin(mongooseAggregatePaginate)
 
-export const post=mongoose.model("post",postSchema)
+export const Post = mongoose.model("Post",postSchema)
