@@ -23,8 +23,13 @@ app.use(express.static("public"));
 import userRouter from "../src/routes/user.route.js";
 import studentRouter from "../src/routes/student.route.js"
 import teacherRouter from "../src/routes/teacher.route.js"
+import allOpenStudents from "./controllers/openAPIs/students.OpenAPI.js";
+import {allTeachers }from "./controllers/openAPIs/teachers.OpenAPI.js";
+
 app.use("/user", userRouter);
 app.use("/student",studentRouter)
 app.use("/teacher",teacherRouter)
+app.use("/allusers",allOpenStudents)
+app.use("/allteachers",allTeachers)
 
 export { app };
