@@ -26,10 +26,19 @@ import teacherRouter from "../src/routes/teacher.route.js"
 import allOpenStudents from "./controllers/openAPIs/students.OpenAPI.js";
 import {allTeachers }from "./controllers/openAPIs/teachers.OpenAPI.js";
 
+
+//____POST____
 app.use("/user", userRouter);
 app.use("/student",studentRouter)
 app.use("/teacher",teacherRouter)
+//_____GET_____
 app.use("/allusers",allOpenStudents)
 app.use("/allteachers",allTeachers)
 
+app.use("/tuition",studentRouter)
+//__DELETE__
+app.use("/student/post",studentRouter)
+
+//___PATCH___
+app.use("/student",studentRouter)
 export { app };

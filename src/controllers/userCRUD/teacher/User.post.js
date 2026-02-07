@@ -1,9 +1,9 @@
-import { application } from "../models/Application.model.js";
-import { Post } from "../models/Post.model.js";
-import { User } from "../models/User.model.js";
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponse } from "../utils/ApiResponse.js";
-import asyncHandler from "../utils/AsyncHandler.js";
+import { application } from "../../../models/Application.model.js";
+import { Post } from "../../../models/Post.model.js";
+import { User } from "../../../models/User.model.js";
+import { ApiError } from "../../../utils/ApiError.js";
+import { ApiResponse } from "../../../utils/ApiResponse.js";
+import asyncHandler from "../../../utils/AsyncHandler.js";
 
 const TeachingApplication = asyncHandler(async (req, res) => {
   const { name, email, qualification, Experience, ExpectedSalary } = req.body;

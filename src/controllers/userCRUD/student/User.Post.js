@@ -1,8 +1,8 @@
-import { Post } from "../models/Post.model.js";
-import { User } from "../models/User.model.js";
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponse } from "../utils/ApiResponse.js";
-import asyncHandler from "../utils/AsyncHandler.js";
+import { Post } from "../../../models/Post.model.js";
+import { User } from "../../../models/User.model.js";
+import { ApiError } from "../../../utils/ApiError.js";
+import { ApiResponse } from "../../../utils/ApiResponse.js";
+import asyncHandler from "../../../utils/AsyncHandler.js";
 
 const StudentPosts = asyncHandler(async (req, res) => {
   const { subject, classLevel, description, location, budget, email } =

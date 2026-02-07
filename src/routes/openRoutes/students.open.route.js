@@ -1,5 +1,5 @@
 import { Router } from "express";
-import allOpenStudents from "../controllers/openAPIs/students.OpenAPI.js";
+import allOpenStudents from "../../controllers/openAPIs/students.OpenAPI.js";
 
 
 const router = Router()
