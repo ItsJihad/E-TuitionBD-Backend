@@ -10,5 +10,5 @@ const router = Router();
 router.route("/post").post(upload.none(), StudentPosts);
 router.route("/delete/:postId").delete(DeletePost)
 router.route("/posts/:postId").get(GetPostDetails)
-router.route("/posts/:postId").patch(UpdatePost)
+router.route("/update/:postId").patch(UpdatePost)
 export default router;

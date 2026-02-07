@@ -7,26 +7,27 @@ import asyncHandler from "../../../utils/AsyncHandler.js";
 const DeletePost = asyncHandler(async (req, res) => {
   const { postId } = req.params;
   const { email } = req.body;
+  // console.log(postId);
 
-  const postobj = await Post.findById({ _id: postId });
-  if(!postobj){
-    throw new ApiError(404,"post not found")
+  const postobj = await Post.findById(postId.toString());
+  if (!postobj) {
+    throw new ApiError(404, "post not found");
   }
+
   const userId = postobj?.student;
-  const theUser = await User.findById({ _id: userId });
-  const theUserId = theUser._id.toString();
+  const theUser = await User.findById( userId.toString() );
+  const theUserId = theUser._id?.toString();
 
   const FindUser = await User.findOne({ email });
   if (!FindUser) {
-    throw new ApiError(404, "nai");
+    throw new ApiError(404, "invalid User");
   }
   const FindUser_id = FindUser?._id;
   const userrerID = FindUser_id.toString();
 
   if (theUserId !== userrerID) {
-    throw new ApiError(404, "nai");
+    throw new ApiError(404, "not Found");
   }
-
 
   await Post.findOneAndDelete({ _id: postId });
 
