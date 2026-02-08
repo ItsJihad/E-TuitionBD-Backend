@@ -21,24 +21,27 @@ app.use(express.static("public"));
 
 // ROUTERS____________________
 import userRouter from "../src/routes/user.route.js";
-import studentRouter from "../src/routes/student.route.js"
-import teacherRouter from "../src/routes/teacher.route.js"
-import allOpenStudents from "./controllers/openAPIs/students.OpenAPI.js";
-import {allTeachers }from "./controllers/openAPIs/teachers.OpenAPI.js";
-
+import studentRouter from "../src/routes/student.route.js";
+import teacherRouter from "../src/routes/teacher.route.js";
+import allOpenStudents from "./controllers/openAPIs/User/students.OpenAPI.js";
+import { allTeachers } from "./controllers/openAPIs/User/teachers.OpenAPI.js";
+import allLatestPosts from "../src/routes/openRoutes/latestPosts.Open.route.js";
+import alllatesapplications from "./routes/openRoutes/latestApplications.Open.route.js";
 
 //____POST____
 app.use("/user", userRouter);
-app.use("/student",studentRouter)
-app.use("/teacher/applications",teacherRouter)
+app.use("/student", studentRouter);
+app.use("/teacher/applications", teacherRouter);
 //_____GET_____
-app.use("/allusers",allOpenStudents)
-app.use("/allteachers",allTeachers)
-app.use("/tuition",studentRouter)
+app.use("/allusers", allOpenStudents);
+app.use("/allteachers", allTeachers);
+app.use("/tuition", studentRouter);
+app.use("/latestposts", allLatestPosts);
+app.use("/allapplications", alllatesapplications);
 //__DELETE__
-app.use("/student/post",studentRouter)
-app.use("/teacher/application",teacherRouter)
+app.use("/student/post", studentRouter);
+app.use("/teacher/application", teacherRouter);
 
 //___PATCH___
-app.use("/student/post",studentRouter)
+app.use("/student/post", studentRouter);
 export { app };

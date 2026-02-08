@@ -1,7 +1,7 @@
-import AsyncHandler from "../../utils/AsyncHandler.js";
-import { User } from "../../models/User.model.js";
-import { ApiResponse } from "../../utils/ApiResponse.js";
-import { application } from "../../models/Application.model.js";
+import AsyncHandler from "../../../utils/AsyncHandler.js";
+import { User } from "../../../models/User.model.js";
+import { ApiResponse } from "../../../utils/ApiResponse.js";
+import { application } from "../../../models/Application.model.js";
 
 const allOpenStudents = AsyncHandler(async (req, res) => {
   const result = await User.find({ role: "student" })
