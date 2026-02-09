@@ -6,8 +6,7 @@ import asyncHandler from "../../../utils/AsyncHandler.js";
 
 const DeletePost = asyncHandler(async (req, res) => {
   const { postId } = req.params;
-  const { email } = req.body;
-  // console.log(postId);
+  const { email } = req.CurrentUser;
 
   const postobj = await Post.findById(postId.toString());
   if (!postobj) {

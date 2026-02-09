@@ -6,8 +6,8 @@ import asyncHandler from "../../../utils/AsyncHandler.js";
 
 const UpdatePost = asyncHandler(async (req, res) => {
   const { postId } = req.params;
-  const { subject, classLevel, budget, description, location, email } =
-    req.body;
+  const { email } = req.CurrentUser;
+  const { subject, classLevel, budget, description, location } = req.body;
 
   const updateDetails = {
     subject: subject,

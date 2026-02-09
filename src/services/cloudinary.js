@@ -26,7 +26,7 @@ dotenv.config({
             fs.unlinkSync(localFilePath)
             return response.url
         } catch (error) {
-            console.log("Cloudinary upload error:", error);
+            
             fs.unlinkSync(localFilePath)
             return null
 

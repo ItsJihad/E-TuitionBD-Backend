@@ -40,7 +40,7 @@ const ApplySchema= new Schema({
 
 
 },{timestamps:true})
-
+ApplySchema.index({ teacher: 1, post: 1 }, { unique: true });
 ApplySchema.plugin(mongooseAggregatePaginate)
 
 export const application = mongoose.model("application",ApplySchema)

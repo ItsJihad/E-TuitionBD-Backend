@@ -4,7 +4,6 @@ import { User } from "../../models/User.model.js";
 export const AuthFirebaseUser=asyncHandler(async(req,res)=>{
 
     const {email,name}=req.CurrentUser
-    console.log(email);
     const {role,phone}=req.body
 
     const UserInDB= await User.findOne({email:email}).select("-__v -createdAt -updatedAt")

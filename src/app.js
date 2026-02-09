@@ -27,9 +27,9 @@ import allOpenStudents from "./controllers/openAPIs/User/students.OpenAPI.js";
 import { allTeachers } from "./controllers/openAPIs/User/teachers.OpenAPI.js";
 import allLatestPosts from "../src/routes/openRoutes/latestPosts.Open.route.js";
 import alllatesapplications from "./routes/openRoutes/latestApplications.Open.route.js";
-
+import teacherRoute from "../src/routes/teacher.route.js"
 //____POST____
-app.use("/api/user", userRouter);
+// app.use("/api/user", userRouter);
 app.use("/api/student", studentRouter);
 app.use("/api/teacher/applications", teacherRouter);
 app.use("/api/user/auth",userRouter)
@@ -39,10 +39,19 @@ app.use("/api/allteachers", allTeachers);
 app.use("/api/tuition", studentRouter);
 app.use("/api/latestposts", allLatestPosts);
 app.use("/api/allapplications", alllatesapplications);
+app.use("/api/student",studentRouter)
+app.use("/api/teacher",teacherRoute)
 //__DELETE__
 app.use("/api/student/post", studentRouter);
 app.use("/api/teacher/application", teacherRouter);
 
 //___PATCH___
 app.use("/api/student/post", studentRouter);
+
+
+//____ERRORHANDLE____
+import errorHandler from "./utils/errorHandles.js";
+app.use(errorHandler);
+
+
 export { app };
