@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 const app = express();
 app.use(
   cors({
-    origin: process.env.Cors_Origin,
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
     // here we defined  frontend website's link, so that none of others can communicate to server
   }),
@@ -29,19 +29,20 @@ import allLatestPosts from "../src/routes/openRoutes/latestPosts.Open.route.js";
 import alllatesapplications from "./routes/openRoutes/latestApplications.Open.route.js";
 
 //____POST____
-app.use("/user", userRouter);
-app.use("/student", studentRouter);
-app.use("/teacher/applications", teacherRouter);
+app.use("/api/user", userRouter);
+app.use("/api/student", studentRouter);
+app.use("/api/teacher/applications", teacherRouter);
+app.use("/api/user/auth",userRouter)
 //_____GET_____
-app.use("/allusers", allOpenStudents);
-app.use("/allteachers", allTeachers);
-app.use("/tuition", studentRouter);
-app.use("/latestposts", allLatestPosts);
-app.use("/allapplications", alllatesapplications);
+app.use("/api/allusers", allOpenStudents);
+app.use("/api/allteachers", allTeachers);
+app.use("/api/tuition", studentRouter);
+app.use("/api/latestposts", allLatestPosts);
+app.use("/api/allapplications", alllatesapplications);
 //__DELETE__
-app.use("/student/post", studentRouter);
-app.use("/teacher/application", teacherRouter);
+app.use("/api/student/post", studentRouter);
+app.use("/api/teacher/application", teacherRouter);
 
 //___PATCH___
-app.use("/student/post", studentRouter);
+app.use("/api/student/post", studentRouter);
 export { app };

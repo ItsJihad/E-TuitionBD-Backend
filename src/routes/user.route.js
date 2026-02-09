@@ -1,18 +1,11 @@
 import { Router } from "express";
-import RegisterUser from "../controllers/authControllers/User.Register.js";
-import LoginUser from "../controllers/authControllers/User.Login.js";
-import { upload } from "../middlewares/multer.js";
 import FirebaseVerification from "../middlewares/Auth.js";
+import { AuthFirebaseUser } from "../controllers/auth/Auth.controller.js";
 
 const router = Router();
 
-router.route("/register").post(
-  upload.fields([
-    { name: "avatar", maxCount: 1 },
-    { name: "coverImage", maxCount: 1 },
-  ]),FirebaseVerification,
-  RegisterUser,
-);
-router.route("/login").post(upload.none(),FirebaseVerification, LoginUser);
+router.route("/register").post(FirebaseVerification);
+router.route("/login").post(FirebaseVerification);
+router.route("/auth").post(FirebaseVerification,AuthFirebaseUser)
 
 export default router;
