@@ -1,4 +1,4 @@
-import { ApiError } from "../utils/ApiError.js";
+import { ApiError } from "./ApiError.js";
 
 const errorHandler = (err, req, res, next) => {
   console.error(err);
@@ -7,7 +7,7 @@ const errorHandler = (err, req, res, next) => {
   if (err.code === 11000) {
     return res.status(409).json({
       success: false,
-      message: "You have already applied to this post",
+      message: "No Duplicates allowed",
     });
   }
 

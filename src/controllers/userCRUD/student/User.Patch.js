@@ -25,7 +25,7 @@ const UpdatePost = asyncHandler(async (req, res) => {
   const postReff = await Post.findById({ _id: postId });
   const postUserId = postReff?.student.toString();
 
-  if (userID !== postUserId) {
+  if (userID !== postUserId && TheUser.role !=="admin") {
     throw new ApiError(401, "Unauthorized");
   }
 

@@ -31,7 +31,7 @@ const StudentPosts = asyncHandler(async (req, res) => {
     budget: budget,
     description: description,
     location: location,
-  });
+  }).select("-createdAt -updatedAt -__v -student");;
 
   return res
     .status(201)

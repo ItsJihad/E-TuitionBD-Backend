@@ -9,7 +9,6 @@ const GetAllPostByUser = asyncHandler(async (req, res) => {
 
   const FindUserInDB = await User.findOne({email})
 
-
   const PostDetails = await Post.find({student:FindUserInDB._id}).select("-__v -createdAt -updatedAt")
 
   return res.status(200).json(new ApiResponse(200, PostDetails, "all post by user"));

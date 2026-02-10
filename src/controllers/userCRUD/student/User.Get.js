@@ -9,7 +9,7 @@ const GetPostDetails = asyncHandler(async (req, res) => {
     "-createdAt -updatedAt -_id -__v",
   );
 
-  return res.status(200).json(new ApiResponse(200, postDetails, "here u go"));
+  return res.status(200).json(new ApiResponse(200, postDetails, "post details"));
 });
 
 export default GetPostDetails;

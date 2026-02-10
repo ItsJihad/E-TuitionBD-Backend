@@ -24,7 +24,7 @@ const DeletePost = asyncHandler(async (req, res) => {
   const FindUser_id = FindUser?._id;
   const userrerID = FindUser_id.toString();
 
-  if (theUserId !== userrerID) {
+  if (theUserId !== userrerID ) {
     throw new ApiError(404, "not Found");
   }
 

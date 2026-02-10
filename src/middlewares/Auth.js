@@ -15,7 +15,6 @@ const FirebaseVerification = asyncHandler(async (req, res, next) => {
     throw new ApiError(401, "forbidden");
   }
 
-
   req.CurrentUser = decoded;
   next();
 });
