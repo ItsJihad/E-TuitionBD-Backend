@@ -23,19 +23,40 @@ const UpdatePost = asyncHandler(async (req, res) => {
   }
   const userID = TheUser._id?.toString();
   const postReff = await Post.findById({ _id: postId });
+  if(!postReff){
+    throw new ApiError(404,"post not found")
+  }
   const postUserId = postReff?.student.toString();
 
-  if (userID !== postUserId && TheUser.role !=="admin") {
+  if (userID !== postUserId && TheUser.role !== "admin") {
     throw new ApiError(401, "Unauthorized");
   }
 
-  const FindPost = await Post.findByIdAndUpdate(
+  if (TheUser.role === "admin") {
+    const { status } = req.body;
+
+    const updateStatus = {
+      status: status,
+    };
+
+    const FindandUpadateRole = await Post.findByIdAndUpdate(
+      { _id: postId },
+      { $set: updateStatus },
+      { new: true, runValidators: true },
+    ).select("-createdAt -updatedAt -__v -student");
+    
+    return res.status(200).json(FindandUpadateRole)
+
+  } else if(userID === postUserId){
+      const FindPost = await Post.findByIdAndUpdate(
     { _id: postId },
     { $set: updateDetails },
     { new: true, runValidators: true },
   ).select("-createdAt -updatedAt -__v -student");
 
   return res.status(200).json(new ApiResponse(200, FindPost, "Post Updated"));
+  }
+  
 });
 
 export default UpdatePost;

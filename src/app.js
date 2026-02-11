@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import cookieParser from "cookie-parser";
 import errorHandler from "./utils/errorHandler.js";
 
 const app = express();
@@ -11,8 +10,7 @@ app.use(
     // here we defined  frontend website's link, so that none of others can communicate to server
   }),
 );
-app.use(cookieParser());
-// here its being used to save or remove tokens from cookies
+
 app.use(express.json({ limit: "16kb" }));
 // here we've set a limit of having json data
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
@@ -33,10 +31,15 @@ import allLatestPosts from "../src/routes/openRoutes/latestPosts.Open.route.js";
 import alllatesapplications from "./routes/openRoutes/latestApplications.Open.route.js";
 import teacherRoute from "../src/routes/teacher.route.js";
 import AdminRouter from "../src/routes/admin.route.js";
+import {StripePayment} from "../src/middlewares/Stripe.Payment.js"
 
 
 //____Auth - POST____
 app.use("/api/user", userRouter);
+
+
+//_____PAYMENT______
+      app.use("/api/payment",StripePayment)
 
 
 //_____OPEN-API________

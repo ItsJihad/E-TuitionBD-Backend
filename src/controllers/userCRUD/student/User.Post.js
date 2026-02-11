@@ -31,11 +31,13 @@ const StudentPosts = asyncHandler(async (req, res) => {
     budget: budget,
     description: description,
     location: location,
-  }).select("-createdAt -updatedAt -__v -student");;
+  })
+
+  const PostRef= await Post.findById({_id:postData._id}).select("-__v -createdAt -updatedAt")
 
   return res
     .status(201)
-    .json(new ApiResponse(200, postData, "Post Successfull"));
+    .json(new ApiResponse(200, PostRef, "Post Successfull"));
 });
 
 export { StudentPosts };

@@ -3,7 +3,7 @@ import { User } from "../../models/User.model.js";
 import { ApiError } from "../../utils/ApiError.js";
 
 export const AuthFirebaseUser = asyncHandler(async (req, res) => {
-  const { email, name } = req.CurrentUser;
+  const { email, displayName } = req.CurrentUser;
   const { role, phone } = req.body;
 
   if (role !== "student" && role !== "teacher") {
@@ -15,7 +15,7 @@ export const AuthFirebaseUser = asyncHandler(async (req, res) => {
   );
   if (!UserInDB) {
     const CreateUserInDB = await User.create({
-      name: name,
+      name: displayName,
       email: email,
       role: role,
       phone: parseInt(phone),

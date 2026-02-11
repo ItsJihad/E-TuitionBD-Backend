@@ -1,7 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 
 const UserSchema = new Schema(
   {
@@ -35,14 +33,6 @@ const UserSchema = new Schema(
       required: false,
     },
 
-    // avatar: {
-    //   type: String,
-    //   required: true,
-    // },
-    // coverImage: {
-    //   type: String,
-    //   required: false,
-    // },
 
     refreshToken:{
       type:String
@@ -63,48 +53,6 @@ UserSchema.pre("save", async function () {
 });
 
 
-// compare or validate the password while signin using bcrypt
 
-// UserSchema.methods.ValidatePass= async function(password){
-//  return await bcrypt.compare(password,this.password)
-
-//  /* so mainly what happens here. we are making a custom method via using 'Schema.methods.METHODNAME'
-//   and as bcrypt can encrypt the pass, it can also decrypt or validate the pass.
-//   and what it takes a function where it uses the compare method and it takes the user inputted password and stored hashed password {this.password}
- 
-//  */
-// }
-
-//  //now we'll need to use the JWT and design Token validations
-//  UserSchema.methods.AccessTokenGenerator= function(){
-//   return jwt.sign(
-//     {
-//       _id:this._id,
-//       email:this.email,
-//       username:this.username,
-//       role:this.role
-//       //this is the payload , or we can say which data we are holding in the token
-//     },
-//     process.env.ACCESS_TOKEN_SECRET, // token secret
-//     {
-//       expiresIn:process.env.ACCESS_TOKEN_EXPIRY // expiry secret
-//     }
-//   )
-//  }
-
-
-
-//  UserSchema.methods.RefreshTokenGenerator= function(){
-//   return jwt.sign(
-//     {
-//       _id:this._id,
-      
-//     },
-//     process.env.REFRESH_TOKEN_SECRET,
-//     {
-//       expiresIn:process.env.REFRESH_TOKEN_EXPIRY
-//     }
-//   )
-//  }
 
 export  const User = mongoose.model("User", UserSchema);

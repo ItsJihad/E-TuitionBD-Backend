@@ -6,16 +6,20 @@ const FirebaseVerification = asyncHandler(async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization?.startsWith("Bearer ")) {
-    throw new ApiError(401, "No token provided")}
+    throw new ApiError(401, "No token provided");
+  }
 
   const token = authorization.split(" ")[1];
   const decoded = await admin.auth().verifyIdToken(token);
 
-  if (!decoded) {
+  const userDetails = await admin.auth().getUser(decoded.uid);
+
+  if (!userDetails) {
     throw new ApiError(401, "forbidden");
   }
 
-  req.CurrentUser = decoded;
+  req.CurrentUser = userDetails;
+
   next();
 });
 
