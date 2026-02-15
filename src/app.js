@@ -32,10 +32,16 @@ import alllatesapplications from "./routes/openRoutes/latestApplications.Open.ro
 import teacherRoute from "../src/routes/teacher.route.js";
 import AdminRouter from "../src/routes/admin.route.js";
 import {StripePayment} from "../src/middlewares/Stripe.Payment.js"
-
+import PrivateRoutes from "../src/routes/private.routes.js"
 
 //____Auth - POST____
 app.use("/api/user", userRouter);
+
+
+//______PRIVATE_ROUTES________
+
+      app.use("/api/private",PrivateRoutes)
+
 
 
 //_____PAYMENT______
@@ -45,7 +51,7 @@ app.use("/api/user", userRouter);
 //_____OPEN-API________
 
     //____GET____
-        app.use("/api/allusers", allOpenStudents);
+      //   app.use("/api/allusers", allOpenStudents);
         app.use("/api/allteachers", allTeachers);
         app.use("/api/latestposts", allLatestPosts);
         app.use("/api/allapplications", alllatesapplications);

@@ -5,9 +5,9 @@ import { application } from "../../../models/Application.model.js";
 
 const allOpenStudents = AsyncHandler(async (req, res) => {
   const result = await User.find({ role: "student" })
-    .limit(6)
+    .limit(4)
     .select(
-      " -password -refreshToken -phone -role -createdAt -updatedAt -_id -email -__v",
+      " -phone -role -createdAt -updatedAt  -__v",
     );
 
   return res
