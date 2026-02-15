@@ -9,7 +9,8 @@ const TeachingApplication = asyncHandler(async (req, res) => {
   const { qualification, Experience, ExpectedSalary } = req.body;
   const { postId } = req.params;
   const {name, email}=req.CurrentUser
-
+  console.log("applicationasodns");
+  
   if (
     [name, email, qualification, Experience, ExpectedSalary].some((field) => {
       return field?.trim() === "";

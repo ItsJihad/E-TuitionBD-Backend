@@ -53,7 +53,8 @@ const UpdatePost = asyncHandler(async (req, res) => {
     { $set: updateDetails },
     { new: true, runValidators: true },
   ).select("-createdAt -updatedAt -__v -student");
-
+    console.log("hitting patch");
+    
   return res.status(200).json(new ApiResponse(200, FindPost, "Post Updated"));
   }
   
