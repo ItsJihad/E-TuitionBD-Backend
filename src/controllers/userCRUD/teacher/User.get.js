@@ -4,7 +4,7 @@ import asyncHandler from "../../../utils/AsyncHandler.js";
 export const FindTeacherID=asyncHandler(async(req,res)=>{
 
     const {id}=req.params
-    console.log(id);
+    
     
     const { email } = req.CurrentUser;
     if (!email || email === "") {

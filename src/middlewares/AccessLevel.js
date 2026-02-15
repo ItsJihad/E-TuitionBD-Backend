@@ -11,10 +11,10 @@ export const AccessLevelChecker = asyncHandler(async (req, res, next) => {
   }
 
   if (FindUserInDB.role === "admin") {
-    console.log("vaiye to admin");
+    
     next()
   } else {
-    console.log("vaiye admin na");
+   
     throw new ApiError(403, "Forbidden Access");
   }
 });

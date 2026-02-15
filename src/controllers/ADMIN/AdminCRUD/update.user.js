@@ -5,7 +5,7 @@ import asyncHandler from "../../../utils/AsyncHandler.js";
 
 export const AdminUpdatesUser = asyncHandler(async (req, res) => {
   const { userId } = req.params;
-  console.log(userId);
+  
   
   const { email, name, role, phone } = req.body;
   const FindUserInDB = await User.findById({ _id: userId.toString() });

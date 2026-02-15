@@ -6,12 +6,12 @@ export const GetAllPostsInDB=asyncHandler(async(req,res)=>{
 
 
     const {uid}=req.CurrentUser
-        console.log(uid);
+        
         
         if(!uid){
             throw new ApiError(403,"unauthorized access")
         }
-            console.log("hitting the private teachers route");
+           
             
         const FindAllPosts= await Post.find({status:"pending"}).select("-createdAt -updatedAt -__v")
     
